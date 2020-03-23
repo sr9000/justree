@@ -33,24 +33,50 @@ class Tree(TreeNode):
         self._is_frozen = False
 
     def __eq__(self, o: object) -> bool:
+        """
+        Overloaded equation method
+        :param o: another Tree object to check equation with
+        :return: boolean result of equation
+        """
         return immediate_return_routine(non_recursive_tree_eq, (self, o))
 
     def __ne__(self, o: object) -> bool:
+        """
+        Overloaded not-equation method
+        :param o: another Tree object to check not-equation with
+        :return: boolean result of not-equation
+        """
         return not (self == o)
 
     def __hash__(self) -> int:
+        """
+        Overloaded hash method
+        :return: hash representation of the tree 
+        """
         assert self._is_frozen
         if self._hash is None:
             self._hash = non_recursive_tree_hash(self)
         return self._hash
 
     def __str__(self) -> str:
+        """
+        Overloaded string method
+        :return: string representation of Tree object    
+        """
         return non_recursive_tree_str(self)
 
     def __repr__(self) -> str:
+        """
+        Overloaded repr method
+        :return: string representation of Tree object that is the valid Python expression   
+        """
         return non_recursive_tree_repr(self)
 
     def append(self, tree: 'Tree') -> None:
+        """
+        Add another node or tree to the current tree's children list
+        :param tree: Tree object to append in current tree's children list
+        """
         assert not self._is_frozen
         self._children.append(tree)
 
@@ -60,10 +86,20 @@ class Tree(TreeNode):
 
     @overload
     def insert(self, index: int, tree: 'Tree') -> None:
+        """
+        Insert another node or tree by index
+        :param index: index of children
+        :param tree: Tree object
+        """
         ...
 
     @overload
     def insert(self, indexes: Tuple[int, ...], tree: 'Tree') -> None:
+        """
+        Insert another node or tree by tuple of indexes
+        :param indexes: tuple of indexes
+        :param tree: Tree object 
+        """
         ...
 
     def insert(self, v: object, tree: 'Tree') -> None:
@@ -77,10 +113,20 @@ class Tree(TreeNode):
 
     @overload
     def __getitem__(self, i: int) -> 'Tree':
+        """
+        Get node by index
+        :param i: index 
+        :return: node by index       
+        """
         ...
 
     @overload
     def __getitem__(self, t: Tuple[int, ...]) -> 'Tree':
+        """
+        Get node by tuple of indexes
+        :param t: tuple of indexes 
+        :return: node by index       
+        """
         ...
 
     def __getitem__(self, v: object) -> 'Tree':
@@ -93,10 +139,18 @@ class Tree(TreeNode):
 
     @overload
     def __setitem__(self, i: int, o: 'Tree') -> None:
+        """
+        Set node by index
+        :param i: index       
+        """
         ...
 
     @overload
     def __setitem__(self, t: Tuple[int, ...], o: 'Tree') -> None:
+        """
+        Set node by tuple of indexes
+        :param i: index       
+        """
         ...
 
     def __setitem__(self, v: object, o: 'Tree') -> None:
@@ -110,10 +164,18 @@ class Tree(TreeNode):
 
     @overload
     def __delitem__(self, i: int) -> None:
+        """
+        Delete node by index
+        :param i: index       
+        """
         ...
 
     @overload
     def __delitem__(self, t: Tuple[int, ...]) -> None:
+        """
+        Delete node by tuple of indexes
+        :param i: index       
+        """
         ...
 
     def __delitem__(self, v: object) -> None:
@@ -126,9 +188,15 @@ class Tree(TreeNode):
             raise TypeError(indices_type_error(self, v))
 
     def __len__(self) -> int:
+        """
+        :return: number of children 
+        """
         return len(self._children)
 
     def size(self) -> int:
+        """
+        :return: number of elements
+        """
         if self._is_frozen:
             if self._size is None:
                 self._size = non_recursive_tree_size(self)
@@ -137,6 +205,9 @@ class Tree(TreeNode):
             return non_recursive_tree_size(self)
 
     def height(self) -> int:
+        """
+        :return: height of tree
+        """
         if self._is_frozen:
             if self._height is None:
                 self._height = non_recursive_tree_height(self)
