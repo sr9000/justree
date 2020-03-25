@@ -51,7 +51,7 @@ class Tree(TreeNode):
     def __hash__(self) -> int:
         """
         Overloaded hash method
-        :return: hash representation of the tree 
+        :return: hash value
         """
         assert self._is_frozen
         if self._hash is None:
@@ -74,7 +74,7 @@ class Tree(TreeNode):
 
     def append(self, tree: 'Tree') -> None:
         """
-        Add another node or tree to the current tree's children list
+        Add another tree to the current tree's children list
         :param tree: Tree object to append in current tree's children list
         """
         assert not self._is_frozen
@@ -87,7 +87,7 @@ class Tree(TreeNode):
     @overload
     def insert(self, index: int, tree: 'Tree') -> None:
         """
-        Insert another node or tree by index
+        Insert another tree by index
         :param index: index of children
         :param tree: Tree object
         """
@@ -96,7 +96,7 @@ class Tree(TreeNode):
     @overload
     def insert(self, indexes: Tuple[int, ...], tree: 'Tree') -> None:
         """
-        Insert another node or tree by tuple of indexes
+        Insert another tree by tuple of indexes
         :param indexes: tuple of indexes
         :param tree: Tree object 
         """
@@ -123,7 +123,7 @@ class Tree(TreeNode):
     @overload
     def __getitem__(self, t: Tuple[int, ...]) -> 'Tree':
         """
-        Get node by tuple of indexes
+        Get node by address specified as tuple of indexes
         :param t: tuple of indexes 
         :return: node by index       
         """
@@ -148,7 +148,7 @@ class Tree(TreeNode):
     @overload
     def __setitem__(self, t: Tuple[int, ...], o: 'Tree') -> None:
         """
-        Set node by tuple of indexes
+        Set node by address specified as tuple of indexes
         :param i: index       
         """
         ...
@@ -173,7 +173,7 @@ class Tree(TreeNode):
     @overload
     def __delitem__(self, t: Tuple[int, ...]) -> None:
         """
-        Delete node by tuple of indexes
+        Delete node by address specified as tuple of indexes
         :param i: index       
         """
         ...
@@ -189,13 +189,13 @@ class Tree(TreeNode):
 
     def __len__(self) -> int:
         """
-        :return: number of children 
+        :return: number of children of the root tree node
         """
         return len(self._children)
 
     def size(self) -> int:
         """
-        :return: number of elements
+        :return: number of tree nodes
         """
         if self._is_frozen:
             if self._size is None:
@@ -247,9 +247,17 @@ class Tree(TreeNode):
             return copy(self)
 
     def __copy__(self) -> 'Tree':
+        """
+        Shallow copy function(copy()) overload
+        :return: copy of Tree
+        """
         return non_recursive_tree_copy(self)
 
     def __deepcopy__(self, memo=None) -> 'Tree':
+        """
+        Deep copy operator(deepcopy()) overload
+        :return: copy of Tree
+        """
         if memo is None:
             memo = {}
         return non_recursive_tree_deepcopy(self, memo)
