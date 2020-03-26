@@ -36,6 +36,20 @@ def test_tree_hash():
     tree.freeze()
     assert isinstance(hash(tree), int)
 
+    # Check hash equality of equal trees
+    initialized_tree = Tree(value=1, children=(Tree(value=2),))
+    initialized_tree.freeze()
+    assert hash(tree) == hash(initialized_tree)
+
+    # Check hash equality of extended equal trees
+    tree = Tree.from_tuple(tpl)
+    tree.insert((0, 0), Tree(value=3))
+    tree.freeze()
+    initialized_tree = Tree.from_tuple(tpl)
+    initialized_tree.append(Tree(value=3))
+    initialized_tree.freeze()
+    assert hash(tree) == hash(initialized_tree)
+
 
 def test_tree_str():
     tpl = (1, [(2, []), ])
@@ -46,9 +60,8 @@ def test_tree_str():
 
 def test_tree_repr():
     tpl = (1, [(2, []), ])
-    expected_str = "Tree(value=1, children=( Tree(value=2, children=()),))"
     tree = Tree.from_tuple(tpl)
-    assert repr(tree) == expected_str
+    assert eval(repr(tree)) == tree
 
 
 def test_tree_append():
@@ -296,6 +309,18 @@ def test_tree_bfs_extended():
     assert nodes_positions == tpl_bfs_case_pos[::-1]
     tpl_bfs_case_mirrored_nodes = ['(a)', '(b)', '(3 (a) (b))', '(2 (3 (a) (b)))', '(a (2 (3 (a) (b))))']
     assert nodes_tuple == tpl_bfs_case_mirrored_nodes
+
+
+def test_tree_from_tuple():
+    tree_initialized = Tree(value="a", children=(Tree(value=2, children=(
+        Tree(value=3, children=(Tree(value="a"), Tree(value="b"),), ),)),))
+    tree_from_tuple = Tree.from_tuple(("a", [(2, [(3, [("a", []), ("b", [])])]), ]))
+    assert tree_from_tuple == tree_initialized
+
+
+def test_tree_to_tuple():
+    tpl = ("a", [(2, [(3, [("a", []), ("b", [])])]), ])
+    assert Tree.from_tuple(tpl).to_tuple() == tpl
 
 
 def test_freeze_assert():
