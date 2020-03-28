@@ -61,14 +61,14 @@ class Tree(TreeNode):
     def __str__(self) -> str:
         """
         Overloaded string method
-        :return: string representation of Tree object    
+        :return: string representation of Tree object
         """
         return non_recursive_tree_str(self)
 
     def __repr__(self) -> str:
         """
         Overloaded repr method
-        :return: string representation of Tree object that is the valid Python expression   
+        :return: string representation of Tree object that is the valid Python expression
         """
         return non_recursive_tree_repr(self)
 
@@ -98,7 +98,7 @@ class Tree(TreeNode):
         """
         Insert another tree by tuple of indexes
         :param indexes: tuple of indexes
-        :param tree: Tree object 
+        :param tree: Tree object
         """
         ...
 
@@ -115,8 +115,8 @@ class Tree(TreeNode):
     def __getitem__(self, i: int) -> 'Tree':
         """
         Get node by index
-        :param i: index 
-        :return: node by index       
+        :param i: index
+        :return: node by index
         """
         ...
 
@@ -124,8 +124,8 @@ class Tree(TreeNode):
     def __getitem__(self, t: Tuple[int, ...]) -> 'Tree':
         """
         Get node by address specified as tuple of indexes
-        :param t: tuple of indexes 
-        :return: node by index       
+        :param t: tuple of indexes
+        :return: node by index
         """
         ...
 
@@ -141,7 +141,7 @@ class Tree(TreeNode):
     def __setitem__(self, i: int, o: 'Tree') -> None:
         """
         Set node by index
-        :param i: index       
+        :param i: index
         """
         ...
 
@@ -149,7 +149,7 @@ class Tree(TreeNode):
     def __setitem__(self, t: Tuple[int, ...], o: 'Tree') -> None:
         """
         Set node by address specified as tuple of indexes
-        :param i: index       
+        :param t: index
         """
         ...
 
@@ -166,7 +166,7 @@ class Tree(TreeNode):
     def __delitem__(self, i: int) -> None:
         """
         Delete node by index
-        :param i: index       
+        :param i: index
         """
         ...
 
@@ -174,7 +174,7 @@ class Tree(TreeNode):
     def __delitem__(self, t: Tuple[int, ...]) -> None:
         """
         Delete node by address specified as tuple of indexes
-        :param i: index       
+        :param t: index
         """
         ...
 
@@ -189,7 +189,7 @@ class Tree(TreeNode):
 
     def __len__(self) -> int:
         """
-        :return: number of children of the root tree node
+        :return: number of children of the tree root node
         """
         return len(self._children)
 
@@ -217,17 +217,16 @@ class Tree(TreeNode):
 
     def freeze(self) -> None:
         """
-        Make Tree readonly in place
-        :return: None
+        Make tree readonly in place
         """
         non_recursive_tree_freeze(self)
 
     def make_unfreezed(self, unsafe: bool = False, deep: bool = False) -> 'Tree':
         """
-        Make writable copy of Tree
+        Make writable copy of tree
         :param unsafe: convert Tree to writable in place
         :param deep: cloning not only Tree's nodes but also nodes value
-        :return: writable Tree
+        :return: writable tree
         """
         if unsafe:
             non_recursive_tree_unfreeze(self)
@@ -237,9 +236,9 @@ class Tree(TreeNode):
 
     def clone(self, deep=False) -> 'Tree':
         """
-        Clone the Tree
-        :param deep: cloning not only Tree's nodes but also nodes value
-        :return: clone of Tree
+        Clone the tree
+        :param deep: cloning not only tree's nodes but also nodes value
+        :return: clone of a tree
         """
         if deep:
             return deepcopy(self)
@@ -248,15 +247,15 @@ class Tree(TreeNode):
 
     def __copy__(self) -> 'Tree':
         """
-        Shallow copy function(copy()) overload
-        :return: copy of Tree
+        Shallow copy method implementation
+        :return: copy of tree with preserved values references
         """
         return non_recursive_tree_copy(self)
 
     def __deepcopy__(self, memo=None) -> 'Tree':
         """
-        Deep copy operator(deepcopy()) overload
-        :return: copy of Tree
+        Deep copy method implementation
+        :return: copy of tree with deep copied values
         """
         if memo is None:
             memo = {}
@@ -358,15 +357,15 @@ class Tree(TreeNode):
     @classmethod
     def from_tuple(cls, itr: Tuple[Any, Iterable[Tuple]]) -> 'Tree':
         """
-        Convert flat structure into Tree.
+        Convert flat structure into tree.
         :param itr: flat structure of tree
-        :return: Tree with the same order of elements
+        :return: tree with the same order of elements
         """
         return non_recursive_tree_from_tuple(itr)
 
     def to_tuple(self) -> Tuple[Any, Iterable[Tuple]]:
         """
-        Convert Tree into flat structure.
+        Convert tree into flat structure.
         :return: flat structure with the same order of elements
         """
         return non_recursive_tree_to_tuple(self)
