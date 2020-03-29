@@ -225,13 +225,13 @@ def test_tree_unfreeze():
 
     # Check for unsafe way of in-place unfreeze
     tree.freeze()
-    tree.make_unfreezed(unsafe=True)
+    tree.unfreeze(unsafe=True)
     assert tree._is_frozen == False
     assert tree[(0, 0)]._is_frozen == False
 
     # Check for copying way of unfreeze
     tree.freeze()
-    new_tree = tree.make_unfreezed()
+    new_tree = tree.unfreeze()
     assert tree == new_tree
     assert tree._is_frozen == True
     assert new_tree._is_frozen == False

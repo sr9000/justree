@@ -241,11 +241,11 @@ class Tree(TreeNode):
 
     def freeze(self) -> None:
         """
-        Make tree readonly in place (to make it writable again use :meth:`make_unfreezed`)
+        Make tree readonly in place (to make it writable again use :meth:`unfreeze`)
         """
         non_recursive_tree_freeze(self)
 
-    def make_unfreezed(self, unsafe: bool = False, deep: bool = False) -> 'Tree':
+    def unfreeze(self, unsafe: bool = False, deep: bool = False) -> 'Tree':
         """
         Make writable copy of tree (opposite for :meth:`freeze`)
 
