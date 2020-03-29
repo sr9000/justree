@@ -1,7 +1,7 @@
 from collections import deque
 from copy import copy, deepcopy
 from itertools import repeat
-from typing import Any, Callable, Iterable, List, NamedTuple, overload, Tuple, Optional
+from typing import Any, Iterable, List, overload, Tuple, Optional, Union
 
 from .bfs import non_recursive_tree_bfs_forward_original, non_recursive_tree_bfs_forward_mirror, \
     non_recursive_tree_bfs_reverse_original, non_recursive_tree_bfs_reverse_mirror, \
@@ -11,15 +11,20 @@ from .dfs import non_recursive_tree_dfs_forward_original, non_recursive_tree_dfs
     non_recursive_tree_dfs_reverse_original, non_recursive_tree_dfs_reverse_mirror, \
     non_recursive_tree_dfs_reverse_mirror_ex, non_recursive_tree_dfs_reverse_original_ex, \
     non_recursive_tree_dfs_forward_mirror_ex, non_recursive_tree_dfs_forward_original_ex
+from .tools import _ImmediateReturn, immediate_return_routine
 from .tree_node import TreeNode
 
 
-class ImmediateReturn(NamedTuple):
-    retval: Any
-
-
 class Tree(TreeNode):
+    """
+    Tree implementation
+    """
+
     value: Any
+    """
+    Value of a tree node
+    """
+
     _children: List['Tree']
     _is_frozen: bool
     _hash = None
@@ -35,6 +40,7 @@ class Tree(TreeNode):
     def __eq__(self, o: object) -> bool:
         """
         Overloaded equation method
+
         :param o: another Tree object to check equation with
         :return: boolean result of equation
         """
@@ -43,6 +49,7 @@ class Tree(TreeNode):
     def __ne__(self, o: object) -> bool:
         """
         Overloaded not-equation method
+
         :param o: another Tree object to check not-equation with
         :return: boolean result of not-equation
         """
@@ -50,7 +57,8 @@ class Tree(TreeNode):
 
     def __hash__(self) -> int:
         """
-        Overloaded hash method
+        Overloaded hash method, working only on frozen tree (see :meth:`freeze`)
+
         :return: hash value
         """
         assert self._is_frozen
@@ -61,6 +69,7 @@ class Tree(TreeNode):
     def __str__(self) -> str:
         """
         Overloaded string method
+
         :return: string representation of Tree object
         """
         return non_recursive_tree_str(self)
@@ -68,13 +77,14 @@ class Tree(TreeNode):
     def __repr__(self) -> str:
         """
         Overloaded repr method
+
         :return: string representation of Tree object that is the valid Python expression
         """
         return non_recursive_tree_repr(self)
 
     def append(self, tree: 'Tree') -> None:
-        """
-        Add another tree to the current tree's children list
+        """Add another tree to the current tree's children list
+
         :param tree: Tree object to append in current tree's children list
         """
         assert not self._is_frozen
@@ -87,8 +97,9 @@ class Tree(TreeNode):
     @overload
     def insert(self, index: int, tree: 'Tree') -> None:
         """
-        Insert another tree by index
-        :param index: index of children
+        Insert another tree as child into root node children list
+
+        :param index: int index of root node child position
         :param tree: Tree object
         """
         ...
@@ -96,25 +107,33 @@ class Tree(TreeNode):
     @overload
     def insert(self, indexes: Tuple[int, ...], tree: 'Tree') -> None:
         """
-        Insert another tree by tuple of indexes
-        :param indexes: tuple of indexes
+        Insert another tree as child into sub-node children list
+
+        :param indexes: tuple of int indexes of sub-node child position
         :param tree: Tree object
         """
         ...
 
-    def insert(self, v: object, tree: 'Tree') -> None:
+    def insert(self, index: Union[int, Tuple[int, ...]], tree: 'Tree') -> None:
+        """
+        Insert another tree as child into root node or sub-node children list
+
+        :param index: int index of root node child position or tuple of int indexes of sub-node child position
+        :param tree: :class:`Tree` object
+        """
         assert not self._is_frozen
-        if isinstance(v, int):
-            self.insert((v,), tree)
-        elif isinstance(v, tuple):
-            non_recursive_tree_insert(self, v, tree)
+        if isinstance(index, int):
+            self.insert((index,), tree)
+        elif isinstance(index, tuple):
+            non_recursive_tree_insert(self, index, tree)
         else:
-            raise TypeError(indices_type_error(self, v))
+            raise TypeError(indices_type_error(self, index))
 
     @overload
     def __getitem__(self, i: int) -> 'Tree':
         """
         Get node by index
+
         :param i: index
         :return: node by index
         """
@@ -124,6 +143,7 @@ class Tree(TreeNode):
     def __getitem__(self, t: Tuple[int, ...]) -> 'Tree':
         """
         Get node by address specified as tuple of indexes
+
         :param t: tuple of indexes
         :return: node by index
         """
@@ -141,6 +161,7 @@ class Tree(TreeNode):
     def __setitem__(self, i: int, o: 'Tree') -> None:
         """
         Set node by index
+
         :param i: index
         """
         ...
@@ -149,6 +170,7 @@ class Tree(TreeNode):
     def __setitem__(self, t: Tuple[int, ...], o: 'Tree') -> None:
         """
         Set node by address specified as tuple of indexes
+
         :param t: index
         """
         ...
@@ -166,6 +188,7 @@ class Tree(TreeNode):
     def __delitem__(self, i: int) -> None:
         """
         Delete node by index
+
         :param i: index
         """
         ...
@@ -174,6 +197,7 @@ class Tree(TreeNode):
     def __delitem__(self, t: Tuple[int, ...]) -> None:
         """
         Delete node by address specified as tuple of indexes
+
         :param t: index
         """
         ...
@@ -217,13 +241,14 @@ class Tree(TreeNode):
 
     def freeze(self) -> None:
         """
-        Make tree readonly in place
+        Make tree readonly in place (to make it writable again use :meth:`make_unfreezed`)
         """
         non_recursive_tree_freeze(self)
 
     def make_unfreezed(self, unsafe: bool = False, deep: bool = False) -> 'Tree':
         """
-        Make writable copy of tree
+        Make writable copy of tree (opposite for :meth:`freeze`)
+
         :param unsafe: convert Tree to writable in place
         :param deep: cloning not only Tree's nodes but also nodes value
         :return: writable tree
@@ -237,6 +262,7 @@ class Tree(TreeNode):
     def clone(self, deep=False) -> 'Tree':
         """
         Clone the tree
+
         :param deep: cloning not only tree's nodes but also nodes value
         :return: clone of a tree
         """
@@ -248,6 +274,7 @@ class Tree(TreeNode):
     def __copy__(self) -> 'Tree':
         """
         Shallow copy method implementation
+
         :return: copy of tree with preserved values references
         """
         return non_recursive_tree_copy(self)
@@ -255,6 +282,7 @@ class Tree(TreeNode):
     def __deepcopy__(self, memo=None) -> 'Tree':
         """
         Deep copy method implementation
+
         :return: copy of tree with deep copied values
         """
         if memo is None:
@@ -264,6 +292,7 @@ class Tree(TreeNode):
     def bfs(self, reverse: bool = False, mirror: bool = False) -> Iterable['Tree']:
         """
         Breadth First Search
+
         :param reverse: reverse resulting order of nodes (require O(n) memory)
         :param mirror: used reversed children order on whole tree
         :return: nodes in requested order
@@ -283,6 +312,7 @@ class Tree(TreeNode):
             -> Iterable[Tuple['Tree', int, Tuple[int, ...]]]:
         """
         Breadth First Search appended with nodes positions
+
         :param depth: limit search with max allowed depth
         :param reverse: reverse resulting order of nodes (require O(n) memory)
         :param mirror: used reversed children order on whole tree
@@ -302,10 +332,11 @@ class Tree(TreeNode):
     def dfs(self, reverse: bool = False, mirror: bool = False, post_order: bool = False) -> Iterable['Tree']:
         """
         Depth First Search
+
         :param reverse: reverse resulting order of nodes (require twice more time)
         :param mirror: used reversed children order on whole tree
         :param post_order: taking node on leaving (usually on entering)
-        (require twice more time, incompatible with param `reverse`)
+            (require twice more time, incompatible with param `reverse`)
         :return: nodes in requested order
         """
         assert not (reverse and post_order), 'Param `post_order` incompatible with param `reverse`'
@@ -330,11 +361,12 @@ class Tree(TreeNode):
             -> Iterable[Tuple['Tree', int, Tuple[int, ...]]]:
         """
         Depth First Search appended with nodes positions
+
         :param depth: limit search with max allowed depth
         :param reverse: reverse resulting order of nodes (require twice more time)
         :param mirror: used reversed children order on whole tree
         :param post_order: taking node on leaving (usually on entering)
-        (require twice more time, incompatible with param `reverse`)
+            (require twice more time, incompatible with param `reverse`)
         :return: nodes in requested order
         """
         assert not (reverse and post_order), 'Param `post_order` incompatible with param `reverse`'
@@ -358,6 +390,7 @@ class Tree(TreeNode):
     def from_tuple(cls, itr: Tuple[Any, Iterable[Tuple]]) -> 'Tree':
         """
         Convert flat structure into tree.
+
         :param itr: flat structure of tree
         :return: tree with the same order of elements
         """
@@ -366,6 +399,7 @@ class Tree(TreeNode):
     def to_tuple(self) -> Tuple[Any, Iterable[Tuple]]:
         """
         Convert tree into flat structure.
+
         :return: flat structure with the same order of elements
         """
         return non_recursive_tree_to_tuple(self)
@@ -375,21 +409,12 @@ def indices_type_error(self: Tree, indices: object) -> str:
     return f'{type(self).__name__} indices must be int or tuple of int, not {type(indices).__name__}'
 
 
-def immediate_return_routine(routine: Callable[..., Any], args: Tuple[Any, ...]) -> Any:
-    try:
-        return routine(*args)
-    except AssertionError as err:
-        if err.args and isinstance(err.args[0], ImmediateReturn):
-            return err.args[0].retval
-        raise
-
-
 def non_recursive_tree_eq(self: Tree, other: object) -> bool:
-    assert isinstance(other, Tree), ImmediateReturn(False)
+    assert isinstance(other, Tree), _ImmediateReturn(False)
     q = deque([(self, other)])
     while q:
         f, s = q.popleft()
-        assert compare_nodes(f, s), ImmediateReturn(False)
+        assert compare_nodes(f, s), _ImmediateReturn(False)
         q.extend(zip(f._children, s._children))
     return True
 
