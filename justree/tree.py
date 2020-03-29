@@ -11,13 +11,13 @@ from .dfs import non_recursive_tree_dfs_forward_original, non_recursive_tree_dfs
     non_recursive_tree_dfs_reverse_original, non_recursive_tree_dfs_reverse_mirror, \
     non_recursive_tree_dfs_reverse_mirror_ex, non_recursive_tree_dfs_reverse_original_ex, \
     non_recursive_tree_dfs_forward_mirror_ex, non_recursive_tree_dfs_forward_original_ex
-from .tools import _ImmediateReturn, immediate_return_routine
+from .tools import ImmediateReturn, immediate_return_routine
 from .tree_node import TreeNode
 
 
 class Tree(TreeNode):
     """
-    Tree implementation
+    Tree implementation that represent tree node with stored :attr:`value`
     """
 
     value: Any
@@ -410,11 +410,11 @@ def indices_type_error(self: Tree, indices: object) -> str:
 
 
 def non_recursive_tree_eq(self: Tree, other: object) -> bool:
-    assert isinstance(other, Tree), _ImmediateReturn(False)
+    assert isinstance(other, Tree), ImmediateReturn(False)
     q = deque([(self, other)])
     while q:
         f, s = q.popleft()
-        assert compare_nodes(f, s), _ImmediateReturn(False)
+        assert compare_nodes(f, s), ImmediateReturn(False)
         q.extend(zip(f._children, s._children))
     return True
 

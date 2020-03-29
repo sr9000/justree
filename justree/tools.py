@@ -3,7 +3,7 @@ from typing import Sequence, Iterable, Tuple, TypeVar, NamedTuple, Any, Callable
 T = TypeVar('T')
 
 
-class _ImmediateReturn(NamedTuple):
+class ImmediateReturn(NamedTuple):
     retval: Any
 
 
@@ -18,6 +18,6 @@ def immediate_return_routine(routine: Callable[..., Any], args: Tuple[Any, ...])
     try:
         return routine(*args)
     except AssertionError as err:
-        if err.args and isinstance(err.args[0], _ImmediateReturn):
+        if err.args and isinstance(err.args[0], ImmediateReturn):
             return err.args[0].retval
         raise
