@@ -17,7 +17,13 @@ from .tree_node import TreeNode
 
 class Tree(TreeNode):
     """
-    Tree implementation that represent tree node with stored :attr:`value`
+    Tree implementation that represent tree node with :attr:`value` and children nodes
+
+    Iterating through children:
+
+    >>> tree_node = Tree(...)
+    >>> for child_node in tree_node:
+            ...
     """
 
     value: Any
@@ -32,6 +38,17 @@ class Tree(TreeNode):
     _height = None
 
     def __init__(self, value: Any, children: Iterable['Tree'] = ()) -> None:
+        """
+        Create an instance of a tree
+
+        :param value: value to store in tree root node
+        :param children: optional list of child tree nodes
+
+        :example:
+            >>> t = Tree('Hello World!')
+            >>> print(t)
+            (Hello World!)
+        """
         super().__init__()
         self.value = value
         self._children = list(children)
