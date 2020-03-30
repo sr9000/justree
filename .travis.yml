@@ -24,7 +24,7 @@ script:
 
 before_deploy:
 - set -e
-- pip install -r requirenments-github-pages.txt
+- pip install -r requirements-github-pages.txt
 - ./sphinxdoc.sh
 - touch doc/_build/html/.nojekyll
 
