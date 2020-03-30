@@ -1,0 +1,416 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>justree.tree module &#8212; justree 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="justree package" href="justree.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="justree.html" title="justree package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">justree 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="justree.html" accesskey="U">justree package</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="justree.html"
+                        title="previous chapter">justree package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/justree.tree.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-justree.tree">
+<span id="justree-tree-module"></span><h1>justree.tree module<a class="headerlink" href="#module-justree.tree" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="justree.tree.Tree">
+<em class="property">class </em><code class="sig-prename descclassname">justree.tree.</code><code class="sig-name descname">Tree</code><span class="sig-paren">(</span><em class="sig-param">value: Any</em>, <em class="sig-param">children: Iterable[Tree] = ()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/justree/tree.html#Tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tree implementation that represent tree node with <a class="reference internal" href="#justree.tree.Tree.value" title="justree.tree.Tree.value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">value</span></code></a> and children nodes</p>
+<p>Iterating through children:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tree_node</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">child_node</span> <span class="ow">in</span> <span class="n">tree_node</span><span class="p">:</span>
+<span class="go">        ...</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="justree.tree.Tree.__copy__">
+<code class="sig-name descname">__copy__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; justree.tree.Tree<a class="reference internal" href="_modules/justree/tree.html#Tree.__copy__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.__copy__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shallow copy method implementation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>copy of tree with preserved values references</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.__deepcopy__">
+<code class="sig-name descname">__deepcopy__</code><span class="sig-paren">(</span><em class="sig-param">memo=None</em><span class="sig-paren">)</span> &#x2192; justree.tree.Tree<a class="reference internal" href="_modules/justree/tree.html#Tree.__deepcopy__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.__deepcopy__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deep copy method implementation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>copy of tree with deep copied values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.__eq__">
+<code class="sig-name descname">__eq__</code><span class="sig-paren">(</span><em class="sig-param">o: object</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/justree/tree.html#Tree.__eq__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded equation method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>o</strong> – another Tree object to check equation with</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>boolean result of equation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.__hash__">
+<code class="sig-name descname">__hash__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="_modules/justree/tree.html#Tree.__hash__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.__hash__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded hash method, working only on frozen tree (see <a class="reference internal" href="#justree.tree.Tree.freeze" title="justree.tree.Tree.freeze"><code class="xref py py-meth docutils literal notranslate"><span class="pre">freeze()</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>hash value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">value: Any</em>, <em class="sig-param">children: Iterable[Tree] = ()</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/justree/tree.html#Tree.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of a tree</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – value to store in tree root node</p></li>
+<li><p><strong>children</strong> – optional list of child tree nodes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">(Hello World!)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.__len__">
+<code class="sig-name descname">__len__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="_modules/justree/tree.html#Tree.__len__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.__len__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>number of children of the tree root node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.__ne__">
+<code class="sig-name descname">__ne__</code><span class="sig-paren">(</span><em class="sig-param">o: object</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/justree/tree.html#Tree.__ne__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.__ne__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded not-equation method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>o</strong> – another Tree object to check not-equation with</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>boolean result of not-equation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/justree/tree.html#Tree.__repr__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded repr method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>string representation of Tree object that is the valid Python expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.__str__">
+<code class="sig-name descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/justree/tree.html#Tree.__str__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded string method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>string representation of Tree object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">tree: justree.tree.Tree</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/justree/tree.html#Tree.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add another tree to the current tree’s children list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> – Tree object to append in current tree’s children list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.bfs">
+<code class="sig-name descname">bfs</code><span class="sig-paren">(</span><em class="sig-param">reverse: bool = False</em>, <em class="sig-param">mirror: bool = False</em><span class="sig-paren">)</span> &#x2192; Iterable[justree.tree.Tree]<a class="reference internal" href="_modules/justree/tree.html#Tree.bfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.bfs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Breadth First Search</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reverse</strong> – reverse resulting order of nodes (require O(n) memory)</p></li>
+<li><p><strong>mirror</strong> – used reversed children order on whole tree</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nodes in requested order</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.bfs_ex">
+<code class="sig-name descname">bfs_ex</code><span class="sig-paren">(</span><em class="sig-param">depth: Optional[int] = None</em>, <em class="sig-param">reverse: bool = False</em>, <em class="sig-param">mirror: bool = False</em><span class="sig-paren">)</span> &#x2192; Iterable[Tuple[justree.tree.Tree, int, Tuple[int, ...]]]<a class="reference internal" href="_modules/justree/tree.html#Tree.bfs_ex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.bfs_ex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Breadth First Search appended with nodes positions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>depth</strong> – limit search with max allowed depth</p></li>
+<li><p><strong>reverse</strong> – reverse resulting order of nodes (require O(n) memory)</p></li>
+<li><p><strong>mirror</strong> – used reversed children order on whole tree</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nodes in requested order</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.clone">
+<code class="sig-name descname">clone</code><span class="sig-paren">(</span><em class="sig-param">deep=False</em><span class="sig-paren">)</span> &#x2192; justree.tree.Tree<a class="reference internal" href="_modules/justree/tree.html#Tree.clone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.clone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clone the tree</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>deep</strong> – cloning not only tree’s nodes but also nodes value</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>clone of a tree</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.dfs">
+<code class="sig-name descname">dfs</code><span class="sig-paren">(</span><em class="sig-param">reverse: bool = False</em>, <em class="sig-param">mirror: bool = False</em>, <em class="sig-param">post_order: bool = False</em><span class="sig-paren">)</span> &#x2192; Iterable[justree.tree.Tree]<a class="reference internal" href="_modules/justree/tree.html#Tree.dfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.dfs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depth First Search</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reverse</strong> – reverse resulting order of nodes (require twice more time)</p></li>
+<li><p><strong>mirror</strong> – used reversed children order on whole tree</p></li>
+<li><p><strong>post_order</strong> – taking node on leaving (usually on entering)
+(require twice more time, incompatible with param <cite>reverse</cite>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nodes in requested order</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.dfs_ex">
+<code class="sig-name descname">dfs_ex</code><span class="sig-paren">(</span><em class="sig-param">depth: Optional[int] = None</em>, <em class="sig-param">reverse: bool = False</em>, <em class="sig-param">mirror: bool = False</em>, <em class="sig-param">post_order: bool = False</em><span class="sig-paren">)</span> &#x2192; Iterable[Tuple[justree.tree.Tree, int, Tuple[int, ...]]]<a class="reference internal" href="_modules/justree/tree.html#Tree.dfs_ex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.dfs_ex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depth First Search appended with nodes positions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>depth</strong> – limit search with max allowed depth</p></li>
+<li><p><strong>reverse</strong> – reverse resulting order of nodes (require twice more time)</p></li>
+<li><p><strong>mirror</strong> – used reversed children order on whole tree</p></li>
+<li><p><strong>post_order</strong> – taking node on leaving (usually on entering)
+(require twice more time, incompatible with param <cite>reverse</cite>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nodes in requested order</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.freeze">
+<code class="sig-name descname">freeze</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/justree/tree.html#Tree.freeze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.freeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make tree readonly in place (to make it writable again use <a class="reference internal" href="#justree.tree.Tree.unfreeze" title="justree.tree.Tree.unfreeze"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unfreeze()</span></code></a>)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.from_tuple">
+<em class="property">classmethod </em><code class="sig-name descname">from_tuple</code><span class="sig-paren">(</span><em class="sig-param">itr: Tuple[Any, Iterable[Tuple]]</em><span class="sig-paren">)</span> &#x2192; justree.tree.Tree<a class="reference internal" href="_modules/justree/tree.html#Tree.from_tuple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.from_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert flat structure into tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>itr</strong> – flat structure of tree</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tree with the same order of elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.height">
+<code class="sig-name descname">height</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="_modules/justree/tree.html#Tree.height"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.height" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>height of tree</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.insert">
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param">index: Union[int, Tuple[int, ...]], tree: justree.tree.Tree</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/justree/tree.html#Tree.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert another tree as child into root node or sub-node children list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – int index of root node child position or tuple of int indexes of sub-node child position</p></li>
+<li><p><strong>tree</strong> – <a class="reference internal" href="#justree.tree.Tree" title="justree.tree.Tree"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tree</span></code></a> object</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.size">
+<code class="sig-name descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="_modules/justree/tree.html#Tree.size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.size" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>number of tree nodes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.to_tuple">
+<code class="sig-name descname">to_tuple</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Tuple[Any, Iterable[Tuple]]<a class="reference internal" href="_modules/justree/tree.html#Tree.to_tuple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.to_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert tree into flat structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>flat structure with the same order of elements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="justree.tree.Tree.unfreeze">
+<code class="sig-name descname">unfreeze</code><span class="sig-paren">(</span><em class="sig-param">unsafe: bool = False</em>, <em class="sig-param">deep: bool = False</em><span class="sig-paren">)</span> &#x2192; justree.tree.Tree<a class="reference internal" href="_modules/justree/tree.html#Tree.unfreeze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#justree.tree.Tree.unfreeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make writable copy of tree (opposite for <a class="reference internal" href="#justree.tree.Tree.freeze" title="justree.tree.Tree.freeze"><code class="xref py py-meth docutils literal notranslate"><span class="pre">freeze()</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>unsafe</strong> – convert Tree to writable in place</p></li>
+<li><p><strong>deep</strong> – cloning not only Tree’s nodes but also nodes value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>writable tree</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="justree.tree.Tree.value">
+<code class="sig-name descname">value</code><em class="property">: Any</em><em class="property"> = None</em><a class="headerlink" href="#justree.tree.Tree.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value of a tree node</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="justree.html" title="justree package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">justree 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="justree.html" >justree package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
+    </div>
+  </body>
+</html>

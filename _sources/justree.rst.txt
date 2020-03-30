@@ -1,0 +1,17 @@
+justree package
+===============
+
+Submodules
+----------
+
+.. toctree::
+
+   justree.tree
+
+Module contents
+---------------
+
+.. automodule:: justree
+   :members:
+   :special-members:
+   :private-members:

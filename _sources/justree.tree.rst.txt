@@ -1,0 +1,7 @@
+justree.tree module
+===================
+
+.. automodule:: justree.tree
+   :members:
+   :special-members:
+   :private-members:
