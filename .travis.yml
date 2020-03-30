@@ -1,12 +1,39 @@
 language: python
+os: linux
+dist: bionic
+branches:
+  only:
+  - master
+  - dev
+  - /f\d\d\d-.*/
+
 python:
-  - "3.6"
-  - "3.7"
-  - "3.8"
+- 3.6
+- 3.7
+- 3.8
+
+before_install:
+- set -e
 
 install:
-  - "python setup.py install"
+- python setup.py install
 
 script:
-  - pip install -r requirements-testing.txt
-  - sh testing.sh
+- pip install -r requirements-testing.txt
+- ./testing.sh
+
+before_deploy:
+- set -e
+- pip install -r requirenments-github-pages.txt
+- ./sphinxdoc.sh
+- touch doc/_build/html/.nojekyll
+
+deploy:
+  - provider: pages
+    strategy: git
+    token: $TRAVIS_CI_GITHUB_PAGES_TOKEN
+    local_dir: doc/_build/html
+    on:
+      branch: master
+      python: 3.8
+    edge: true

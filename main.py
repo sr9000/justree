@@ -61,7 +61,7 @@ def main():
 
     ctg[()].value = []
     ctg.freeze()
-    ctg2 = ctg.make_unfreezed()
+    ctg2 = ctg.unfreeze()
     print('29)', ctg2 == ctg)
 
     del ctg2[0]
